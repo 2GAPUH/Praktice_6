@@ -10,9 +10,11 @@ void sex(SDL_Renderer* ren, SDL_Point* pos, unsigned int radius)
 {
 	SDL_SetRenderDrawColor(ren, 0, 0, 200, 255);
 	float degree = M_PI / 180;
-	static int z = 0;
+	static int fin = 0;
+	static int start = 0;
+	static int scale = 1;
 	int x, y;
-	for (float i = 0; i <= z; i += 1 / ((float)radius / 10)) 
+	for (float i = start; i <= fin; i += 1 / ((float)radius / 25)) 
 	{
 		SDL_RenderDrawLine(ren, x, y, x = pos->x + radius * cosf(i * degree), y = pos->y + radius * sinf(i * degree));
 		SDL_RenderDrawLine(ren, x, y, x = pos->x + (radius + 1) * cosf(i * degree), y = pos->y + (radius + 1) * sinf(i * degree));
@@ -20,8 +22,18 @@ void sex(SDL_Renderer* ren, SDL_Point* pos, unsigned int radius)
 		SDL_RenderDrawLine(ren, x, y, x = pos->x + (radius + 3) * cosf(i * degree), y = pos->y + (radius + 3) * sinf(i * degree));
 		SDL_RenderDrawLine(ren, x, y, x = pos->x + (radius + 4) * cosf(i * degree), y = pos->y + (radius + 4) * sinf(i * degree));
 	}
-	z++;
+	if (fin == 360)
+	{
+		start += 1;
+	}
+	else fin += scale;
+	if (start == 360)
+	{
+		fin = 0;
+		start = 0;
+	}
 }
+
 
 void DrawThirdLayer(SDL_Window* win, SDL_Renderer* ren)
 {

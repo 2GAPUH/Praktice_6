@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 		//DrawSecondLayer(win, ren);
 		DrawThirdLayer(win, ren);
 		SDL_RenderPresent(ren);
+		SDL_Delay(16);
 	}
 
 	DeInit(0, &win, &ren);
