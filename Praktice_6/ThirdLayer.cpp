@@ -11,6 +11,7 @@ void sex(SDL_Renderer* ren, SDL_Point* pos, unsigned int radius)
 	SDL_SetRenderDrawColor(ren, 0, 0, 200, 255);
 	float degree = M_PI / 180;
 	static int fin = 0;
+
 	static int start = 0;
 	static int scale = 1;
 	int x, y, z;
@@ -22,12 +23,18 @@ void sex(SDL_Renderer* ren, SDL_Point* pos, unsigned int radius)
 		SDL_RenderDrawLine(ren, x, y, x = pos->x + (radius + 3) * cosf(i * degree), y = pos->y + (radius + 3) * sinf(i * degree));
 		SDL_RenderDrawLine(ren, x, y, x = pos->x + (radius + 4) * cosf(i * degree), y = pos->y + (radius + 4) * sinf(i * degree));
 	}
-	if (fin == 360)
+	if (fin > 359)
 	{
-		start += 1;
+		c = rand() % 8 + 4;
+		c = 1 + c / 10;
+		start += c;
 	}
-	else fin += scale;
-	if (start == 360)
+	else {
+		c = rand() % 8 + 4;
+		c = 1 + c / 10;
+		fin += c;
+	}
+	if (start > 359)
 	{
 		fin = 0;
 		start = 0;
