@@ -34,7 +34,7 @@ void Draw(SDL_Renderer* ren, int x, int y)
 
 void DrawSecondLayer(SDL_Window* win, SDL_Renderer* ren)
 {
-	static int x = win_width/2, y = 0, speed = 8, xMove = -1, yMove = 0, clockwise = -1;
+	static int x = win_width/2, y = 0, speed = 8, xMove = 1, yMove = 0, clockwise = 1;
 	static int type = 3;
 	
 	Draw(ren, x, y);
