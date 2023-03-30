@@ -34,6 +34,13 @@ void DrawSnowFlake(SDL_Renderer* ren, SDL_FPoint snowflake[], SnowFlakeParameter
 									-x + flakeArray[n].x,
 									-y + flakeArray[n].y) ;
 		}
+		//for (int i = 4; i < 12-1; i+=2)
+		//{
+		//	SDL_RenderDrawLine(ren, flakeArray[n].size * snowflake[i].x + flakeArray[n].x, 
+		//		                    flakeArray[n].size * snowflake[i].y + flakeArray[n].y + 1, 
+		//		                    flakeArray[n].size * snowflake[i + 1].x + flakeArray[n].x, 
+		//		                    flakeArray[n].size * snowflake[i + 1].y + flakeArray[n].y + 1);
+		//}
 	}
 }
 
@@ -116,7 +123,7 @@ void DrawFirstLayer(SDL_Window* win, SDL_Renderer* ren)
 
 	static bool check = 1;
 
-	SDL_FPoint snowflake[4] = { {-0.5, 0}, {-0.35, 0.35}, {0, 0.5}, {0.35, 0.35} };
+	static SDL_FPoint snowflake[100] = { {-0.5, 0}, {-0.35, 0.35}, {0, 0.5}, {0.35, 0.35}, {-0.18, 0.15}, {-0.18, 0.3}, {0.18, 0.15}, {0.18, 0.3}, {-0.18, -0.15}, {-0.18, -0.3}, {-0.18, -0.15}, {-0.18, -0.3} };
 
 	static SnowFlakeParameters flakeArray[SNOWFLAKE_COUNT];
 
