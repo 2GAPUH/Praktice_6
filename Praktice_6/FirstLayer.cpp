@@ -12,7 +12,7 @@ struct SnowFlakeParameters
 	SDL_Color color_factor;
 	int size;
 	int stepToReverse;
-	bool isLightUp;
+	int isLightUp;
 };
 
 float getDistance(float x1, float y1, float x2, float y2)
@@ -25,7 +25,7 @@ void DrawSnowFlake(SDL_Renderer* ren, SDL_FPoint snowflake[], SnowFlakeParameter
 	
 	for (int n = 0; n < SNOWFLAKE_COUNT; n++)
 	{
-		SDL_SetRenderDrawColor(ren, 192, 192, 192, 255);
+		SDL_SetRenderDrawColor(ren, flakeArray[n].color_factor.r, flakeArray[n].color_factor.g, flakeArray[n].color_factor.b, flakeArray[n].color_factor.a);
 		for (int i = 0; i < 4; i++)
 		{	
 			float x = 0, y = 0;
@@ -48,10 +48,11 @@ void GenerateSnowFlakeArray(SnowFlakeParameters flakeArray[])
 		flakeArray[i].scaleY = rand() % (2 - 1 + 1) + 1;
 		flakeArray[i].size = rand() % (25 - 15 + 1) + 15;
 		flakeArray[i].stepToReverse = rand() % (40 - 25 + 1) + 25;
-		flakeArray[i].color_factor.a = color = rand() % (40 - 25 + 1) + 25;
+		flakeArray[i].color_factor.a = color = rand() % (254 - 151 + 1) + 151;
 		flakeArray[i].color_factor.r = color;
 		flakeArray[i].color_factor.g = color;
 		flakeArray[i].color_factor.b = color;
+		flakeArray[i].isLightUp = 1;
 		for (int n = 0;n < i; n++)
 		{
 			if (getDistance(flakeArray[n].x, flakeArray[n].y, flakeArray[i].x, flakeArray[i].y) < 50)
@@ -96,16 +97,16 @@ void MoveSnowFlake(SnowFlakeParameters flakeArray[])
 
 void ReColorSnowFlake(SnowFlakeParameters flakeArray[])
 {
-	//int color;
-	//flakeArray[i].color_factor.a += flakeArray[i].isLightup;
-	//flakeArray[i].color_factor.r
-	//flakeArray[i].color_factor.g
-	//flakeArray[i].color_factor.b
-	 
-	// flakeArray[i].color_factor.a = color = rand() % (40 - 25 + 1) + 25;
-	// flakeArray[i].color_factor.r = color;
-	//flakeArray[i].color_factor.g = color;
-	//flakeArray[i].color_factor.b = color;
+	for (int i = 0;i < SNOWFLAKE_COUNT;i++)
+	{
+		flakeArray[i].color_factor.r += flakeArray[i].isLightUp;
+		flakeArray[i].color_factor.g += flakeArray[i].isLightUp;
+		flakeArray[i].color_factor.b += flakeArray[i].isLightUp;
+		if (flakeArray[i].color_factor.b >= 253)
+			flakeArray[i].isLightUp *= -1;
+		if (flakeArray[i].color_factor.b <= 150)
+			flakeArray[i].isLightUp *= -1;
+	}
 }
 
 //слой - падающий снег (снежинки разных размеров падают с разной скоростью, плавно покачиваясь влево - вправо)
@@ -126,6 +127,6 @@ void DrawFirstLayer(SDL_Window* win, SDL_Renderer* ren)
 	}
 
 	MoveSnowFlake(flakeArray);
-
+	ReColorSnowFlake(flakeArray);
 	DrawSnowFlake(ren ,snowflake, flakeArray);	
 }

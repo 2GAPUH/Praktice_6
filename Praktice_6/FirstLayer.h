@@ -7,7 +7,7 @@ struct SnowFlakeParameters
 	SDL_Color color_factor;
 	int size;
 	int stepToReverse;
-	bool isLightUp;
+	int isLightUp;
 };
 
 void DrawFirstLayer(SDL_Window* win, SDL_Renderer* ren);
