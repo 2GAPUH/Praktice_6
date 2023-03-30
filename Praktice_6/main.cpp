@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 	while (1) {
 		SDL_SetRenderDrawColor(ren, 200, 200, 200, 255);
 		SDL_RenderClear(ren);
-		//DrawFirstLayer(win, ren);
+		DrawFirstLayer(win, ren);
 		//DrawSecondLayer(win, ren);
 		DrawThirdLayer(win, ren);
 		SDL_RenderPresent(ren);
