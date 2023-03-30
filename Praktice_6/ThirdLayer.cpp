@@ -11,9 +11,10 @@ void sex(SDL_Renderer* ren, SDL_Point* pos, unsigned int radius)
 	SDL_SetRenderDrawColor(ren, 0, 0, 200, 255);
 	float degree = M_PI / 180;
 	static int fin = 0;
-	static float start = 0;
-	static float scale = 1;
-	int x, y,c;
+
+	static int start = 0;
+	static int scale = 1;
+	int x, y, z;
 	for (float i = start; i <= fin; i += 1 / ((float)radius / 25)) 
 	{
 		SDL_RenderDrawLine(ren, x, y, x = pos->x + radius * cosf(i * degree), y = pos->y + radius * sinf(i * degree));
