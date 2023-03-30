@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <iostream>
 #define RECT_WIDTH 200
 #define RECT_HEIGHT 100
 
@@ -34,58 +35,94 @@ void Draw(SDL_Renderer* ren, int x, int y)
 
 void DrawSecondLayer(SDL_Window* win, SDL_Renderer* ren)
 {
-	static int x = win_width/2, y = 0, speed = 8, xMove = 1, yMove = 0, clockwise = 1;
+	static int x = 500, y = 0, xMove = 10, yMove = 0, clockwise = 1, cnt = 0;
+	int speed, swap;
 	static int type = 3;
-	
+	srand(time(NULL));
+
 	Draw(ren, x, y);
-	
-	x += xMove * speed;
-	y += yMove * speed;
-	if (clockwise == 1)
+
+	if (x > 10 && y >= 0)
 	{
-		if (xMove == 1 && yMove == 0 && x + RECT_WIDTH >= win_width)
-		{
-			yMove = 1;
-			xMove = 0;
-		}
-		else if (xMove == 0 && yMove == 1 && y + RECT_HEIGHT >= win_height)
-		{
-			yMove = 0;
-			xMove = -1;
-		}
-		else if (xMove == -1 && yMove == 0 && x <= 0)
-		{
-			yMove = -1;
-			xMove = 0;
-		}
-		else if (xMove == 0 && yMove == -1 && y <= 0)
-		{
-			yMove = 0;
-			xMove = 1;
-		}
+		swap = 5;
 	}
-	else
+	else if (x >= 790 && y <= 10)
 	{
-		if (xMove == -1 && yMove == 0 && x <= 0)
-		{
-			yMove = 1;
-			xMove = 0;
-		}
-		else if (xMove == 0 && yMove == 1 && y + RECT_HEIGHT >= win_height)
-		{
-			yMove = 0;
-			xMove = 1;
-		}
-		else if (xMove == 1 && yMove == 0 && x + RECT_WIDTH >= win_width)
-		{
-			yMove = -1;
-			xMove = 0;
-		}
-		else if (xMove == 0 && yMove == -1 && y <= 0)
-		{
-			yMove = 0;
-			xMove = -1;
-		}
-	
+		swap = rand() % 10;
 	}
+	else if (x <= 790 && y >= 490)
+	{
+		swap = rand() % 10;
+	}
+	else if (x >= 10 && y >= 490)
+	{
+		swap = rand() % 10;
+	}
+	else if (x <=10 && x< 500 && y >= 0)
+	{
+		swap = rand() % 10;
+	}
+	
+
+	do
+	{
+		speed = rand() % 10+1;
+	}while (speed == 0);
+
+		x += xMove * speed;
+		y += yMove * speed;
+
+		if ( x >= 0 && y <= 10 && y+RECT_HEIGHT>=0)
+		{
+			if (swap >= 5)
+			{
+				xMove = 1;
+				yMove = 0;	
+			}
+			else
+			{
+				xMove = 0;
+				yMove = 1;
+			}
+		}
+		if (x >= 790 && y <= 10 && x + RECT_WIDTH <= win_width)
+		{
+			if (swap >= 5)
+			{
+				xMove = 0;
+				yMove = 1;
+			}
+			else
+			{
+				xMove = -1;
+				yMove = 0;
+			}
+		}
+		if (x >= 790 && y >= 490 && y + RECT_HEIGHT <= win_height)
+		{
+			if (swap >= 5)
+			{
+				xMove = -1;
+				yMove = 0;
+			}
+			else
+			{
+				xMove = 0;
+				yMove = -1;
+			}
+		}
+		if (x <= 10 && y >= 490 && x + RECT_WIDTH >= 0)
+		{
+			if (swap >= 4)
+			{
+				xMove = 0;
+				yMove = -1;
+			}
+			else
+			{
+				xMove = 1;
+				yMove = 0;
+			}
+		}
+		
 }

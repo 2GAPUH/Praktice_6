@@ -13,7 +13,7 @@ void sex(SDL_Renderer* ren, SDL_Point* pos, unsigned int radius)
 	static int fin = 0;
 	static int start = 0;
 	static int scale = 1;
-	int x, z;
+	int x, y, z;
 	for (float i = start; i <= fin; i += 1 / ((float)radius / 25)) 
 	{
 		SDL_RenderDrawLine(ren, x, y, x = pos->x + radius * cosf(i * degree), y = pos->y + radius * sinf(i * degree));
