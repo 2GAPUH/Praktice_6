@@ -14,11 +14,9 @@ int win_width = 1000, win_height = 600;
 
 void Draw(SDL_Renderer* ren, int x, int y)
 {
-	SDL_SetRenderDrawColor(ren, 255, 0, 0, 0);
-	SDL_Rect target = { x, y, RECT_WIDTH, RECT_HEIGHT };
-	SDL_RenderFillRect(ren, &target);
 
-	SDL_SetRenderDrawColor(ren, 0, 0, 255, 255);
+
+	SDL_SetRenderDrawColor(ren, 200, 200, 200, 255);
 	
 	SDL_RenderDrawLine(ren, x + 149, y, x + 49, y + 100);
 	SDL_RenderDrawLine(ren, x + 150, y, x + 50, y + 100);
@@ -29,6 +27,19 @@ void Draw(SDL_Renderer* ren, int x, int y)
 	SDL_RenderDrawLine(ren, x + 49, y, x + 149, y + 100);
 	SDL_RenderDrawLine(ren, x + 50, y, x + 150, y + 100);
 	SDL_RenderDrawLine(ren, x + 51, y, x + 151, y + 100);
+	SDL_RenderDrawLine(ren, x + 99, y, x + 99, y + 100);
+	SDL_RenderDrawLine(ren, x + 100, y, x + 100, y + 100);
+	SDL_RenderDrawLine(ren, x + 101, y, x + 101, y + 100);
+
+	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
+	SDL_Rect target = { x + 47, y, RECT_WIDTH - 97, RECT_HEIGHT };
+	SDL_RenderDrawRect(ren, &target);
+	target = { x + 48, y + 1, RECT_WIDTH - 97, RECT_HEIGHT };
+	SDL_RenderDrawRect(ren, &target);
+	target = { x + 49, y + 2, RECT_WIDTH - 97, RECT_HEIGHT };
+	SDL_RenderDrawRect(ren, &target);
+	target = { x + 50, y + 3, RECT_WIDTH - 97, RECT_HEIGHT };
+	SDL_RenderDrawRect(ren, &target);
 }
 
 
@@ -36,7 +47,7 @@ void Draw(SDL_Renderer* ren, int x, int y)
 void DrawSecondLayer(SDL_Window* win, SDL_Renderer* ren)
 {
 	static int x = 500, y = 0, xMove = 10, yMove = 0, clockwise = 1, cnt = 0;
-	int speed, swap;
+	int speed, swap = 0;
 	static int type = 3;
 	srand(time(NULL));
 
@@ -66,7 +77,7 @@ void DrawSecondLayer(SDL_Window* win, SDL_Renderer* ren)
 
 	do
 	{
-		speed = rand() % 10+1;
+		speed = rand() % 5+2;
 	}while (speed == 0);
 
 		x += xMove * speed;
