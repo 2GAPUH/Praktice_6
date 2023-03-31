@@ -24,6 +24,9 @@
     <ClInclude Include="ThirdLayer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="NullLayer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="func.cpp">
@@ -42,6 +45,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
     <ClCompile Include="ThirdLayer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="NullLayer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

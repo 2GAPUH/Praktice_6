@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <iostream>
+#include "NullLayer.h"
 #include "FirstLayer.h"
 #include "SecondLayer.h"
 #include "ThirdLayer.h"
@@ -17,6 +18,7 @@ int main(int argc, char* argv[])
 	while (1) {
 		SDL_SetRenderDrawColor(ren, 63, 72, 204, 255);
 		SDL_RenderClear(ren);
+		DrawNullLayer(win, ren);
 		DrawFirstLayer(win, ren);
 		DrawSecondLayer(win, ren);
 		DrawThirdLayer(win, ren);

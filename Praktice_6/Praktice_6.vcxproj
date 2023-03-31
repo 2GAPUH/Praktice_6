@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClInclude Include="func.h" />
     <ClInclude Include="FirstLayer.h" />
+    <ClInclude Include="NullLayer.h" />
     <ClInclude Include="ThirdLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="func.cpp" />
+    <ClCompile Include="NullLayer.cpp" />
     <ClCompile Include="ThirdLayer.cpp" />
     <ClCompile Include="SecondLayer.cpp" />
     <ClCompile Include="main.cpp" />
