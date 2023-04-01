@@ -8,7 +8,53 @@
 
 void sex(SDL_Renderer* ren, SDL_Point* pos, unsigned int radius) 
 {
-	SDL_SetRenderDrawColor(ren, 0, 0, 200, 255);
+	//247 213 240
+	//251 157 179
+
+	static int count = 1;
+	static bool check = 0;
+	static int r = 247, g = 213, b = 240;
+	if (check == 0)
+	{
+
+		if (count % (300 / 4) == 0)
+			r++;
+		if (count % (300 / 56) == 0)
+			g--;
+		if (count % (300 / 61) == 0)
+			b--;
+		SDL_SetRenderDrawColor(ren, r, g, b, 255);
+		if (count >= 300)
+		{
+			check = 1;
+			r = 251;
+			g = 157;
+			b = 179;
+		}
+		count++;
+	}
+	if (check == 1)
+	{
+
+		if (count % (300 / 4) == 0)
+				r--;
+		if (count % (300 / 56) == 0)
+				g++;
+		if (count % (300 / 61) == 0)
+				b++;
+		SDL_SetRenderDrawColor(ren, r, g, b, 255);
+		
+		if (count <= 2)
+		{
+			check = 0;
+			r = 247;
+			g = 213;
+			b = 240;
+		}
+		count--;
+	}
+
+
 	float degree = M_PI / 180;
 	static int fin = 0;
 	static int start = 0;

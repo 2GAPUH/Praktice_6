@@ -45,7 +45,7 @@ void DrawNullLayer(SDL_Window* window, SDL_Renderer* renderer)
 {
 	static int sign_i = 1;
 	static int i = 110;
-
+	static int gradient = 3, count = 0, gradienMove = 1;
 	
 	SDL_SetRenderDrawColor(renderer, 2, 0, 120, 0);
 
@@ -61,7 +61,7 @@ void DrawNullLayer(SDL_Window* window, SDL_Renderer* renderer)
 			g--;
 		if (k % (WIN_HEIGHT / 58) == 0)
 			b--;
-		SDL_SetRenderDrawColor(renderer, r, g, b, 255);
+		SDL_SetRenderDrawColor(renderer, r + gradient, g + gradient, b + gradient, 255);
 		SDL_RenderDrawLine(renderer, 0, k, WIN_WIDTH, k);
 	}
 
@@ -81,5 +81,13 @@ void DrawNullLayer(SDL_Window* window, SDL_Renderer* renderer)
 	}
 	i += sign_i;
 
-
+	count++;
+	if (count % 5 == 0)
+	{
+		gradient += gradienMove;
+		if (gradient >= 50)
+			gradienMove *= -1;
+		if (gradient <= 2)
+			gradienMove *= -1;
+	}
 }
